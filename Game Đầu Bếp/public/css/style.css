@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none; 
+}
+
+.start{
+    width: 220px;
+    height: 220px;
+    position: absolute;
+    margin-top: 280px;
+    margin-left: 610px;
+}
+
+.hinhnen{
+    width: 100%;
+    height: 730px;
+    /* margin-left: 290px; */
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    text-align: center;
+}
+.khuonbanh{
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    margin-top: 530px;
+    margin-left: 725px;
+}
+.banhmi{
+   position: absolute;
+   width: 340px;
+   height: 340px;
+   margin-top: 510px;
+   margin-left: 630px;
+}
+.xucxich{
+    position: absolute;
+    width: 70px;
+    height: 60px;
+    margin-top: 505px;
+    margin-left: 750px;
+ }
+ .cachua{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    margin-top: 500px;
+    margin-left: 658px;
+ }
+ .chanh{
+    position: absolute;
+    width: 160px;
+    height: 150px;
+    margin-top: 390px;
+    margin-left: 630px;
+ }
+ .thungrac{
+    position: absolute;
+    width: 54px;
+    height: 54px;
+    margin-top: 680px;
+    margin-left: 860px;
+ }
+ .sotvang{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    margin-top: 330px;
+    margin-left: 330px;
+ }
+ .sotdo{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    margin-top: 330px;
+    margin-left: 320px;
+ }
+ .sugar{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    margin-top: 395px;
+    margin-left: 290px;
+ }
+ .muoi{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin-top: 395px;
+    margin-left: 235px;
+ }
+ .lynuoc1{
+   position: absolute;
+   width: 100px;
+   height: 100px;
+   margin-top: 510px;
+   margin-left: 450px;
+}
+.lynuoc2{
+   position: absolute;
+   width: 100px;
+   height: 100px;
+   margin-top: 510px;
+   margin-left: 400px;
+}
+.khachhang{
+   position: absolute;
+   width: 500px;
+   height: 500px;
+   margin-top: 26px;
+   margin-left: 570px;
+}
+
+
+ /* Đánh giá time & sao & chuông */
+ .dongho{
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: 235px;
+ }
+ .chuong{
+   position: absolute;
+   width: 70px;
+   height: 70px;
+   margin-top: 380px;
+   margin-left: 900px;
+}
+.sao{
+   position: absolute;
+   width: 50px;
+   height: 50px;
+   margin-top: 10px;
+   margin-left: 750px;
+}
+.sao1{
+   position: absolute;
+   width: 50px;
+   height: 50px;
+   margin-top: 10px;
+   margin-left: 700px;
+}.sao2{
+   position: absolute;
+   width: 50px;
+   height: 50px;
+   margin-top: 10px;
+   margin-left: 650px;
+}
