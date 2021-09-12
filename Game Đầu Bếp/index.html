@@ -4,71 +4,192 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=0.9, minimum-scale=0.9, maximum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" href="./public/css/style.css">
     <title>Game Cooking Fever</title>
 </head>
 
 <body>
     <div class="root">
-       <div class="material">
+        <div class="material">
             <div class="material-food">
-                <div class="food">          
-                    <img class="food-img" src="./public/images/banhmi.svg" alt="">
-                   <span class="food-price">50</span>
+                <!-- Nguyen lieu nau -->
+                <div class="food">
+                    <img class="food-img1" src="./public/images/banhmi.svg" alt="">
+                    <div class="food-ctn">
+                        <span class="food-price-share food-price">50</span>
+                        <span class="food-price-share">&#36;</span>
+                    </div>
+
                 </div>
-                <div class="food">          
-                    <img class="food-img" src="./public/images/khuonpizza.svg" alt="">
-                    <span class="food-price">50</span>
+                <div class="food">
+                    <img class="food-img1" src="./public/images/khuonpizza.svg" alt="">
+                    <div class="food-ctn">
+                        <span class="food-price-share food-price">100</span>
+                        <span class="food-price-share">&#36;</span>
+                    </div>
                 </div>
-                <div class="food">          
-                    <img class="food-img" src="./public/images/xuxich.svg" alt="">
-                    <span class="food-price">50</span>
+                <div class="food">
+                    <img class="food-img1" src="./public/images/xuxich.svg" alt="">
+                    <div class="food-ctn">
+                        <span class="food-price-share food-price">100</span>
+                        <span class="food-price-share">&#36;</span>
+                    </div>
                 </div>
-                <div class="food">          
-                    <img class="food-img" src="./public/images/tomato.svg" alt="">
-                    <span class="food-price">50</span>
+                <div class="food">
+                    <img class="food-img1" src="./public/images/tomato.svg" alt="">
+                    <div class="food-ctn">
+                        <span class="food-price-share food-price">50</span>
+                        <span class="food-price-share">&#36;</span>
+                    </div>
                 </div>
-                <div class="food">          
-                    <img class="food-img" src="./public/images/quachanh.svg" alt="">
-                    <span class="food-price">50</span>
+                <div class="food">
+                    <img class="food-img1" src="./public/images/quachanh.svg" alt="">
+                    <div class="food-ctn">
+                        <span class="food-price-share food-price">50</span>
+                        <span class="food-price-share">&#36;</span>
+                    </div>
                 </div>
-                <div class="food">          
-                    <img class="food-img" src="./public/images/water.svg" alt="">
-                    <span class="food-price">50</span>
+                <div class="food">
+                    <img class="food-img1" src="./public/images/water.svg" alt="">
+                    <div class="food-ctn">
+                        <span class="food-price-share food-price">50</span>
+                        <span class="food-price-share">&#36;</span>
+                    </div>
+                </div>
+
+                <!-- Gia vi -->
+                <div class="food">
+                    <img class="food-img2" src="./public/images/sotdo.svg" alt="">
+                    <div class="food-ctn">
+                        <span class="food-quantity-share food-quantity">0</span>
+                        <span class="food-quantity-share food-unit">ml</span>
+                    </div>
+                </div>
+                <div class="food">
+                    <img class="food-img2" src="./public/images/vang.svg" alt="">
+                    <div class="food-ctn">
+                        <span class="food-quantity-share food-quantity">0</span>
+                        <span class="food-quantity-share food-unit">ml</span>
+                    </div>
+                </div>
+                <div class="food">
+                    <img class="food-img2" src="./public/images/muoi.svg" alt="">
+                    <div class="food-ctn">
+                        <span class="food-quantity-share food-quantity">0</span>
+                        <span class="food-quantity-share food-unit">g</span>
+                    </div>
+                </div>
+                <div class="food">
+                    <img class="food-img2" src="./public/images/sugar.svg" alt="">
+                    <div class="food-ctn">
+                        <span class="food-quantity-share food-quantity">0</span>
+                        <span class="food-quantity-share food-unit">g</span>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="material-spice">
-                <div class="food">          
-                    <img class="food-img" src="./public/images/sugar.svg" alt="">
-                    <span class="food-price">50</span>
-                </div>
-                <div class="food">          
-                    <img class="food-img" src="./public/images/muoi.svg" alt="">
-                    <span class="food-price">50</span>
-                </div>
-                <div class="food">          
-                    <img class="food-img" src="./public/images/sotdo.svg" alt="">
-                    <span class="food-price">50</span>
-                </div>
-                <div class="food">          
-                    <img class="food-img" src="./public/images/vang.svg" alt="">
-                    <span class="food-price">50</span>
-                </div>
-            </div>     
-       </div>
+        <!-- Dia chua do nau -->
+        <div class="plate">
+            <div class="spn plate-weigh">
+                <span class="plate-weigh-num"></span>
+                <span class="plate-weigh-unit">ml</span>
+            </div>
+            <img class="plate-spice" src="" alt="">
+            <img class="plate-food" src="" alt="">
+            <button class="btn btn-plate">Cook</button>
+        </div>
 
-       <div class="plate">
-           <img class="plate-spice" src="/public/images/muoi.svg" alt="">
-           <img class="plate-food" src="./public/images/pizzatomatoo.svg" alt="">
-       </div>
+        <!-- Khach hang -->
         <div class="people">
             <img src="./public/images/people.svg" alt="">
         </div>
+
+        <!-- Thoi gian cho cua khach hang -->
+        <div class="time">
+            <div class="switch"></div>
+        </div>
+        <div class="spn time-time">
+            <span id="time-count-down"></span>
+            <span>s</span>
+        </div>
+
+        <!-- Lo vi song -->
+        <div class="oven">
+            <div class="spn oven-time">
+                <span class="time-cook"></span>
+                <span>s</span>
+            </div>
+            <img class="oven-img" src="./public/images/large_thumbnail.svg" alt="">
+            <div class="btn-oven-bot">
+                <button class="btn btn-off">Off</button>
+            </div>
+            <div class="oven-overlay"></div>
+        </div>
+
+        <!-- Tong tien, diem -->
+        <div class="point">
+            <img class="point-img" src="./public/images/point.svg" alt="">
+            <span class="point-price">1000 &#36;</span>
+        </div>
+
+        <!-- Button giao hang -->
+        <div class="delivery">
+            <button class="btn btn-delivery">Delivery</button>
+        </div>
+
+        <!-- Thung rac -->
+        <div class="garbage">
+            <img class="garbage-img" src="./public/images/thungrac.svg" alt="">
+        </div> 
+
+        <div class="overlay"></div>
+        <div class="order">
+            <h1 class="order-title">ĐƠN HÀNG</h1>
+            <div class="order-food">
+                <div class="order-food-pic">
+                    <img class="order-food-img" src="./public/images/pizzaxucxic.svg" alt="">
+                </div>
+                <div class="order-food-name">
+                    <h1>Pizza Xúc Xíc</h1>  
+                </div>
+            </div>
+            <div class="order-recipe">
+                <h2>Công thức :</h2>
+                <h5 class="order-recipe-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia repellat accusantium reprehenderit rerum earum nobis consequatur asperiores aspernatur officiis provident magni ea vero, architecto distinctio omnis fugit nostrum officia veritatis!</h4>
+                <ul class="order-recipe-list">
+                    <li class="order-recipe-item">
+                        <span>Đường : </span>
+                        <span>50</span>
+                        <span>g</span>
+                    </li>
+                    <li class="order-recipe-item">
+                        <span>Đường : </span>
+                        <span>50</span>
+                        <span>g</span>
+                    </li>
+                    <li class="order-recipe-item">
+                        <span>Đường : </span>
+                        <span>50</span>
+                        <span>g</span>
+                    </li>
+                    <li class="order-recipe-item">
+                        <span>Đường : </span>
+                        <span>50</span>
+                        <span>g</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="start">
+                <button class="btn btn-start">Start</button>
+            </div>
+        </div>
     </div>
-   
-    <script src="./public/js/cooking.js"></script>
+    
+    <script type="module" src="./public/js/cooking.js"></script>
+    
 </body>
 
 </html>

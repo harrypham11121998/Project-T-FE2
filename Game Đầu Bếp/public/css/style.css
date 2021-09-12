@@ -3,15 +3,18 @@
    padding: 0;
 }
 .root{
-   width: 100vw;
-   height: 100vh;
    background-image: url('../images/backgr.svg');
+   background-repeat:no-repeat;
    position: relative;
+   height: 903px;
+   width: 1200px;
+   margin: 0 auto;
+   overflow: hidden;
 }
 .people{
    position: absolute;
-   right: 0;
-   bottom: 30%;
+   left: 5%;
+   bottom: 43.8%;
 }
 .people img{
    width: 600px;
@@ -19,11 +22,11 @@
 
 .material{
    position: absolute;
-   bottom: 0;
+   bottom: 0%;
    left: 0;
-   width: 670px;
-   height: 300px;
-   background-color: rgba(255, 255, 255, 0.4);
+   background-color: rgba(0, 0, 0, 0.4);
+   width: 440px;
+   height: 400px;
    display: flex;
    border-radius: 10px;
    flex-wrap: wrap;
@@ -31,6 +34,7 @@
 }
 .material-food{
    display: flex;
+   flex-wrap: wrap;
 }
 .food{
    width: 110px;
@@ -40,39 +44,56 @@
    cursor: pointer;
 }
 .food:hover{
-   background-color: goldenrod;
+   background-color: rgba(255, 255, 255, 0.5);
    border-radius: 10px;
 }
-.food-img{
+.food-ctn{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.food-img1,.food-img2{
    min-width: 110px;
    min-height: 110px;
 }
-.food-price{
+.food-price-share{
    align-self: center;
    color: gold;
+   font-size: 19px;
+   font-weight: 555;
 }
-.material-spice{
-   display: flex;
+.food-price{
+   margin-right: 3px;
+}
+
+.food-quantity-share{
+   align-self: center;
+   color: #F77902;
+   font-size: 19px;
+   font-weight: 555;
+}
+.food-quantity{
+   margin-right: 3px;
 }
 .plate{
    position: absolute;
-   bottom: 0;
-   right: 40%;
+   bottom: 15%;
+   right: 42%;
    width: 200px;
    height: 200px;
-   background-color: rgba(255, 255, 255, 0.4);
-   border-radius: 40%;
+   border-radius: 50%;
    display: flex;
    justify-content: center;
    align-items: center;
 }
 .plate-spice{
    position: absolute;
-   top: -100px;
-   right: 0px;
+   top: -10px;
+   right: 10px;
    width: 120px;
    height: 120px;
    animation: 1s flavoring forwards;
+   display: none;
 }
 @keyframes flavoring {
    100%{
@@ -83,4 +104,270 @@
    width: 99%;
    height: 99%;
    object-fit: cover;
+   display: none;
+}
+.plate-weigh{
+   position: absolute;
+   top: -35%;
+   color: #FF6600;
+   display: none;
+}
+.btn-plate{
+   position: absolute;
+   bottom: -30%;
+   width: 200px;
+   background: linear-gradient(90deg, #FF6600,#FF9933);
+}
+.oven-time{
+   position: absolute;
+   top: -27%;
+   color: rgb(233, 248, 24);
+   z-index: 11;
+   min-width: 60px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   opacity: 0;
+}
+.oven-time span:nth-child(1){
+   margin-right: 2px;
+}
+.spn{
+   font-size: 25px;
+   padding:10px 20px;
+   border-radius: 50px;
+   background-color: rgba(0, 0, 0, 0.4);
+}
+.oven{
+   position: absolute;
+   right: 1%;
+   bottom: 7%;
+   width: 400px;
+   height: 200px;
+   border-radius: 30%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.oven-img{
+   width: 450px;
+   height: 300px;
+   z-index: 10;
+}
+.oven-overlay{
+   content: '';
+   position: absolute;
+   top: calc(50% - 110px);
+   right: calc(50% - 150px);
+   background-color: rgb(252, 235, 1, 0.7);
+   border-radius: 50%;
+   width: 300px;
+   height: 200px;
+   animation: flash .8s infinite ease-in-out;
+   display: none;
+}
+
+@keyframes flash {
+   0%{
+      opacity: 0.7;
+   }
+   100%{
+      transform: scale(1.1);
+      opacity: 0;
+   }
+}
+
+.time{
+   position: absolute;
+   left: 6%;
+   top: 27%;
+   width: 35px;
+   height: 260px;
+   background-color: white;
+   border-radius: 50px;
+   display: flex;
+   flex-direction: column-reverse;
+   overflow: hidden;
+}
+
+.time-time{
+   position: absolute;
+   top: 20%;
+   left: 4%;
+   color: rgb(233, 248, 24);
+   min-width: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.time-time span:nth-child(1){
+   margin-right: 3px;
+   align-items: center;
+}
+.switch{
+   width: 100%;
+   height: 100%;
+   background-image: linear-gradient(to bottom right, red, yellow);
+   border-radius: 50px;
+   transition: 1s height linear;
+}
+.point{
+   position: absolute;
+   width: 200px;
+   height: 200px;
+   top: -2%;
+   left: calc(50% - 100px);
+   padding: 10px 20px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.point-price{
+   font-size: 25px;
+   line-height: 25px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100px;
+   height: 50px;
+   position: absolute;
+   top: calc(50% - 30px);
+   color: #EA4335;
+}
+.point-img{
+   width: 100%;
+   height: 100%;
+}
+
+.btn-oven-bot{
+   position: absolute;
+   bottom: -30px;
+   z-index: 11;
+}
+.btn{
+   padding: 10px 30px;
+   border: none;
+   outline: none;
+   border-radius: 40px;
+   text-decoration: none;
+   font-size: 25px;
+   cursor: pointer;
+   z-index: 8;
+}
+.btn:hover{
+   opacity: 0.9;
+}
+.btn-off{
+   background: linear-gradient(90deg, #0162c8,#55e7fc);
+}
+.delivery{
+   position: absolute;
+   right: 10%;
+   bottom: 38%;
+}
+.btn-delivery{
+   background: linear-gradient(90deg, #3300CC ,#9900CC);
+}
+
+.garbage{
+   position: absolute;
+   bottom: -2%;
+   right: 29%;
+   width: 120px;
+   height: 120px;
+   z-index: 10;
+   cursor: pointer;
+}
+.garbage-img{
+   width: 100%;
+   height: 100%;
+}
+.overlay{
+   position: absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   background-color: rgba(0, 0, 0, 0.6);
+   z-index: 50;
+}
+.order{
+   position: absolute;
+   top: 12%;
+   bottom: 12%;
+   left: 20%;
+   right: 20%;
+   background-color: white;
+   z-index: 51;
+   border-radius: 40px;
+   overflow: hidden;
+}
+.order-food{
+   width: 100%;
+   height: 25%;
+   background: linear-gradient(90deg, red, #FF4500);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 30px;
+}
+.order-food-pic{
+   flex:2;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.order-food-img{
+   border-radius: 50%;
+   background-color: rgba(255, 255, 255, 0.87);
+   border: 10px solid yellow;
+   width: 170px;
+   height: 170px;
+}
+.order-title{
+  text-align: center;
+  padding: 10px 0;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, red, #FF4500);
+  border-bottom: 5px solid white;
+  color: rgba(255, 255, 255, 0.87);
+}
+.order-food-name{
+   flex: 3;
+}
+.order-food-name{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+}
+.order-food-name h1{
+   color: yellow;
+}
+.order-recipe{
+   padding: 30px;
+}
+.order-recipe-title{
+   margin: 10px 0;
+   font-size: 20px;
+   color: #333;
+}
+.order-recipe-item{
+   font-size: 25px;
+}
+.order-recipe-list{
+   list-style: none;
+   padding: 0;
+   margin: 0;
+}
+.start{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.btn-start{
+   background: linear-gradient(90deg, red, #FF4500);
+   color: rgba(255, 255, 255, 0.87);
+   min-width: 200px;
 }
