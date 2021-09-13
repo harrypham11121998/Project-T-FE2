@@ -1,4 +1,4 @@
-import { validationFood } from "./data.js";
+import { validationFood,foods,units,unitNames } from "./data.js";
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
@@ -7,28 +7,29 @@ const timeCountDown = $('#time-count-down');
 const divMoney = $('.point-price');
 
 //Khai bao bien
-let totalTime = 30;
+let totalTime = 0;
 let totalMoney = 400;
 let timeCooked = 0;
-let countDown = totalTime + 2;
 let isCooking = false;
 
 
 //Innet Text
-timeCountDown.innerText = `${totalTime + 2}`;
+
 divMoney.innerText = `${totalMoney} $`;
 
+// Thoi gian thuc hien
 let setTime;
 function reducedTime() {
     const swt = $('.switch');
     let percenReduced = (1 / totalTime) * 100;
-    const numMinus = (swt.offsetHeight * percenReduced) / 100;
+    const numMinus = Math.floor((swt.offsetHeight * percenReduced) / 100);
+    console.log(numMinus)
     setTime = setInterval(reducert, 1000);
     function reducert() {
-        if (countDown > 0) {
-            countDown--;
+        if (totalTime !== 0) {
+            totalTime--;
             swt.style.height = `${swt.offsetHeight - numMinus}px`;
-            timeCountDown.innerText = countDown;
+            timeCountDown.innerText = totalTime;
         }
         else {
             swt.style.height = `0px`;
@@ -36,9 +37,9 @@ function reducedTime() {
         }
     }
 }
-reducedTime();
 
-//set su kien cho nguyen lieu
+
+// Set su kien cho nguyen lieu
 const allPriceFood = $$('.food-price');
 $$('.food-img1').forEach((element, index) => {
     element.addEventListener('click', () => {
@@ -94,7 +95,7 @@ let setTimeCook;
 $('.btn-plate').addEventListener('click', () => {
     $('.time-cook').innerText = timeCooked;
     if (isCooking) {
-        alert('Bạn đang nấu');
+        alert('Bạn đã nấu');
     }
     else if ($('.plate-food').getAttribute('src') === './public/images/lemonade.svg' || $('.plate-food').getAttribute('src') === './public/images/water.svg') {
         alert('Món này không nấu được');
@@ -143,3 +144,46 @@ function resetQuantityFood() {
         element.innerText = 0
     });
 }
+
+// Ramdom foods
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+let ramdom;
+let numcheck = -1;
+function ramdomFood() {
+    do {
+        ramdom = getRandomInt(foods.length);
+    } while (numcheck === ramdom);
+    numcheck = ramdom;
+    return numcheck;
+}
+
+function begin() {
+    let food = foods[ramdomFood()];
+    $('.order-food-img').setAttribute('src', food.source);
+    $('.food-wish-img').setAttribute('src', food.source);
+    $('.order-food-img').style.opacity = '1';
+    $('.order-food-name1').innerText = food.nameFood;
+    $('.order-recipe-title').innerText = food.description;
+    let {spice} = food;
+    totalTime = food.time;
+    timeCountDown.innerText = `${totalTime}`;
+    for (let key in spice) {
+        if (spice.hasOwnProperty(key) && units.hasOwnProperty(key) && unitNames.hasOwnProperty(key)) {
+            $('.order-recipe-list').innerHTML += `
+                <li class="order-recipe-item">
+                    <span>${unitNames[key]}: </span>
+                    <span>${spice[key]}</span>
+                    <span>${units[key]}</span>
+                </li>`;
+        }
+    }
+}
+$('.btn-start').addEventListener('click',()=>{
+    $('.overlay').style.display = 'none';
+    $('.order').style.display = 'none';
+    reducedTime();
+});
+begin();

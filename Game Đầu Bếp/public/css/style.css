@@ -2,6 +2,16 @@
    margin: 0;
    padding: 0;
 }
+::-webkit-scrollbar{
+   width: 5px;
+   height: 5px;
+}
+::-webkit-scrollbar-track{
+   background-color: transparent;
+}
+::-webkit-scrollbar-thumb{
+   background-color: rgb(173, 168, 168);
+}
 .root{
    background-image: url('../images/backgr.svg');
    background-repeat:no-repeat;
@@ -103,7 +113,6 @@
 .plate-food{
    width: 99%;
    height: 99%;
-   object-fit: cover;
    display: none;
 }
 .plate-weigh{
@@ -290,6 +299,7 @@
    right: 0;
    background-color: rgba(0, 0, 0, 0.6);
    z-index: 50;
+   
 }
 .order{
    position: absolute;
@@ -297,7 +307,7 @@
    bottom: 12%;
    left: 20%;
    right: 20%;
-   background-color: white;
+   background-color: rgb(232, 241, 96);
    z-index: 51;
    border-radius: 40px;
    overflow: hidden;
@@ -316,6 +326,7 @@
    display: flex;
    align-items: center;
    justify-content: center;
+   position: relative;
 }
 .order-food-img{
    border-radius: 50%;
@@ -323,14 +334,20 @@
    border: 10px solid yellow;
    width: 170px;
    height: 170px;
+   opacity: 0;
 }
+.img-people{
+   position: absolute;
+   left: 50px;
+}
+
 .order-title{
   text-align: center;
   padding: 10px 0;
   letter-spacing: 3px;
   background: linear-gradient(90deg, red, #FF4500);
-  border-bottom: 5px solid white;
-  color: rgba(255, 255, 255, 0.87);
+  border-bottom: 5px solid rgb(232, 241, 96);
+  color: rgb(232, 241, 96);
 }
 .order-food-name{
    flex: 3;
@@ -347,6 +364,12 @@
 }
 .order-recipe{
    padding: 30px;
+   height: 38%;
+   overflow-y: scroll;
+}
+
+.order-recipe h2{
+   color: #333;
 }
 .order-recipe-title{
    margin: 10px 0;
@@ -355,6 +378,18 @@
 }
 .order-recipe-item{
    font-size: 25px;
+   font-weight: 520;
+}
+.order-recipe-item span:nth-child(1){
+   color: #666;
+}
+.order-recipe-item span:nth-child(2){
+   font-size: 22px;
+   color: rgb(161, 50, 50);
+}
+.order-recipe-item span:nth-child(3){
+   font-size: 22px;
+   color: rgb(161, 50, 50);
 }
 .order-recipe-list{
    list-style: none;
@@ -365,9 +400,113 @@
    display: flex;
    align-items: center;
    justify-content: center;
+   position: absolute;
+   padding: 10px;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background: linear-gradient(90deg, red, #FF4500);
 }
 .btn-start{
+   background: linear-gradient(90deg, #c2e621, #FFF200);
+   color: rgb(209, 32, 32);
+   width: 200px;
+   font-weight: 600;
+   letter-spacing: 2px;
+}
+.feedback{
+   position: absolute;
+   top: 12%;
+   bottom: 12%;
+   left: 20%;
+   right: 20%;
+   background-color: white;
+   z-index: 51;
+   border-radius: 40px;
+   overflow: hidden;
+   display: none;
+}
+.feedback-food{
+   width: 100%;
+   height: 25%;
+   background: linear-gradient(90deg, #4B0082, #9932CC);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 40px;
+}
+.feedback-food-pic{
+   border: 5px solid #FF4500;
+   background-color: rgba(255, 255, 255, 0.671);
+   border-radius: 50%;
+   width: 200px;
+   height: 200px;
+   position: relative;
+   object-fit: cover;
+}
+.feedback-people-img{
+   width: 350px;
+   height: 300px;
+   position: absolute;
+   top: -37%;
+   left: -3%;
+}
+.feedback-comment{
+   width: 100%;
+   height: 40%;
+   background-color: violet;
+   padding:10px 30px;
+   overflow-y: scroll;
+}
+.feedback-title{
+ text-align: center;
+  padding: 10px 0;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #4B0082, #9932CC);
+  border-bottom: 5px solid white;
+  color: rgba(255, 255, 255, 0.87);
+}
+.continute{
+   position: absolute;
+   bottom: 2%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   right: 3%;
+}
+.pay{
+   background: linear-gradient(90deg, #4B0082, #9932CC);
+   padding: 25px 50px;
+}
+.pay span{
+   font-size: 25px;
+   color: white;
+}
+.feedback-comment-list{
+   list-style: none;
+}
+.feedback-comment-item{
+   font-size: 20px;
+   margin: 5px 0;
+}
+.btn-continute{
    background: linear-gradient(90deg, red, #FF4500);
    color: rgba(255, 255, 255, 0.87);
-   min-width: 200px;
+   letter-spacing: 2px;
+}
+.food-wish{
+   position: absolute;
+   left: 21%;
+   top: 14%;
+   width: 200px;
+   height: 150px;
+   background: white;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.food-wish img{
+   width: 150px;
+   height: 150px;
 }
