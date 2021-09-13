@@ -1,4 +1,4 @@
-import { validationFood,foods,units,unitNames } from "./data.js";
+import { validationFood,foods,units,unitNames, checkFood } from "./data.js";
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
@@ -19,11 +19,10 @@ divMoney.innerText = `${totalMoney} $`;
 
 // Thoi gian thuc hien
 let setTime;
+const swt = $('.switch');
 function reducedTime() {
-    const swt = $('.switch');
     let percenReduced = (1 / totalTime) * 100;
     const numMinus = Math.floor((swt.offsetHeight * percenReduced) / 100);
-    console.log(numMinus)
     setTime = setInterval(reducert, 1000);
     function reducert() {
         if (totalTime !== 0) {
@@ -49,7 +48,6 @@ $$('.food-img1').forEach((element, index) => {
             totalMoney -= +allPriceFood[index].textContent;
             divMoney.innerText = `${totalMoney} $`;
         }
-
     });
 });
 
@@ -72,13 +70,14 @@ $$('.food-img2').forEach((element, index) => {
                 $('.plate-weigh-num').innerText = count;
                 $('.plate-weigh').style.display = 'block';
                 $('.plate-weigh-unit').innerText = allUnityFood[index].textContent;
-            }, 200);
+            }, 100);
         } else {
             alert('Hiện tại chưa có món ăn để nêm gia vị');
         }
     });
     element.addEventListener('mouseleave', removeOnDW);
     element.addEventListener('mouseup', removeOnDW);
+    element.addEventListener('dragstart', removeOnDW);
     function removeOnDW() {
         if (timer) {
             clearInterval(timer);
@@ -109,6 +108,7 @@ $('.btn-plate').addEventListener('click', () => {
             $('.time-cook').innerText = timeCooked;
         }, 1000);
         isCooking = true;
+        
     }
     else {
         alert('Hiện tại không có món để nấu');
@@ -160,8 +160,9 @@ function ramdomFood() {
     return numcheck;
 }
 
+// Ramdom food
+let food = foods[ramdomFood()];
 function begin() {
-    let food = foods[ramdomFood()];
     $('.order-food-img').setAttribute('src', food.source);
     $('.food-wish-img').setAttribute('src', food.source);
     $('.order-food-img').style.opacity = '1';
@@ -170,6 +171,7 @@ function begin() {
     let {spice} = food;
     totalTime = food.time;
     timeCountDown.innerText = `${totalTime}`;
+    $('.order-recipe-list').innerHTML = '';
     for (let key in spice) {
         if (spice.hasOwnProperty(key) && units.hasOwnProperty(key) && unitNames.hasOwnProperty(key)) {
             $('.order-recipe-list').innerHTML += `
@@ -186,4 +188,61 @@ $('.btn-start').addEventListener('click',()=>{
     $('.order').style.display = 'none';
     reducedTime();
 });
+
+// Set click giao hang
+$('.btn-delivery').addEventListener('click',() => {
+    if (isCooking || $('.plate-food').getAttribute('src') === './public/images/lemonade.svg') {
+        let foodDelivery = {
+            source: $('.plate-food').getAttribute('src'),
+            spice:{
+                chiliSauce: +$('#chiliSauce').textContent,
+                cheddar: +$('#cheddar').textContent,
+                salt: +$('#salt').textContent,
+                sugar: +$('#sugar').textContent
+            },
+            time: +$('.time-cook').textContent
+        }
+        
+        let {messages,pointMunus} = checkFood(food,foodDelivery);
+        if (messages.length !== 0) {
+            $('.feedback-comment-list').innerHTML='';
+            messages.forEach(message =>{
+                $('.feedback-comment-list').innerHTML += `
+                    <li class="feedback-comment-item">
+                        <span>${message}</span>
+                    </li>`;
+            })  
+        }else{
+            $('.feedback-comment-list').innerHTML = `
+                    <li class="feedback-comment-item">
+                        <span>Món của bạn làm rất ngon</span>
+                    </li>`;
+        }
+        $('.feedback-food-name').innerText = food.nameFood;
+        $('.overlay').style.display = 'block';
+        $('.feedback').style.display = 'block';
+        $('.btn-off').click();
+        clearInterval(setTime);
+    }else{
+        alert('Bạn phải nấu ăn mới giao được');
+    }
+});
+
+//set button continute
+$('.btn-continute').addEventListener('click',()=>{
+    food = foods[ramdomFood()];
+    timeCooked = 0;
+    isCooking = false;
+    swt.style.height = '100%';
+    $('.btn-off').click();
+    $('.time-cook').innerText = timeCooked;
+    $('.oven-time').style.opacity = 0;
+    $('.plate-food').setAttribute('src','');
+    $('.plate-food').style.display = 'none';
+    $('.feedback').style.display = 'none';
+    $('.order').style.display = 'block';
+    resetQuantityFood();
+    begin();
+});
+
 begin();

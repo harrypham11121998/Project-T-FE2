@@ -25,6 +25,7 @@
    position: absolute;
    left: 5%;
    bottom: 43.8%;
+   z-index: 3;
 }
 .people img{
    width: 600px;
@@ -486,8 +487,8 @@
    list-style: none;
 }
 .feedback-comment-item{
-   font-size: 20px;
-   margin: 5px 0;
+   font-size: 25px;
+   margin: 10px 0;
 }
 .btn-continute{
    background: linear-gradient(90deg, red, #FF4500);
@@ -496,8 +497,8 @@
 }
 .food-wish{
    position: absolute;
-   left: 21%;
-   top: 14%;
+   left: 19%;
+   top: 15%;
    width: 200px;
    height: 150px;
    background: white;
