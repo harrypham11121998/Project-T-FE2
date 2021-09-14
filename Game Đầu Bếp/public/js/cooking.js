@@ -11,7 +11,7 @@ let totalTime = 0;
 let totalMoney = 400;
 let timeCooked = 0;
 let isCooking = false;
-
+let inMicrowave = false;
 
 //Innet Text
 
@@ -33,6 +33,11 @@ function reducedTime() {
         else {
             swt.style.height = `0px`;
             clearInterval(setTime);
+            $('.feedback-comment-list').innerHTML = `
+                <li class="feedback-comment-item">
+                    <span>Bạn nấu quá lâu -300&#36;</span>
+                </li>`;
+            calback(-100);
         }
     }
 }
@@ -108,7 +113,7 @@ $('.btn-plate').addEventListener('click', () => {
             $('.time-cook').innerText = timeCooked;
         }, 1000);
         isCooking = true;
-        
+        inMicrowave = true;
     }
     else {
         alert('Hiện tại không có món để nấu');
@@ -120,6 +125,7 @@ $('.btn-off').addEventListener('click', () => {
     if (setTimeCook) {
         clearInterval(setTimeCook);
     }
+    inMicrowave = false;
     $('.oven-overlay').style.display = 'none';
 });
 
@@ -127,14 +133,14 @@ $('.btn-off').addEventListener('click', () => {
 $('.garbage').addEventListener('click', () => {
     let check = confirm("Bạn có chắn bỏ món ăn đang nấu ?");
     if (check) {
-        $('.btn-off').click();
-        timeCooked = 0;
-        $('.time-cook').innerText = timeCooked;
-        $('.oven-time').style.opacity = 0;
-        $('.plate-food').setAttribute('src','');
-        $('.plate-food').style.display = 'none';
-        isCooking = false;
-        resetQuantityFood();
+        if (totalMoney < 100) {  
+            clearInterval(setTime);
+            $('#customAlert').style.display = 'block';
+            $('.overlay').style.display = 'block';
+            continueGame();
+        }else{
+            resetFood();
+        } 
     } 
 });
 
@@ -183,66 +189,105 @@ function begin() {
         }
     }
 }
+//nut bat dau
 $('.btn-start').addEventListener('click',()=>{
     $('.overlay').style.display = 'none';
     $('.order').style.display = 'none';
     reducedTime();
 });
 
+function calback(callPrice) {
+    $('.pay-price').innerText = `${callPrice} $`;
+    totalMoney += callPrice;
+    divMoney.innerText = `${totalMoney} $`;  
+    $('.feedback-food-name').innerText = food.nameFood;
+    $('.overlay').style.display = 'block';
+    $('.feedback').style.display = 'block';
+    $('.btn-off').click();
+    clearInterval(setTime);
+}
 // Set click giao hang
 $('.btn-delivery').addEventListener('click',() => {
-    if (isCooking || $('.plate-food').getAttribute('src') === './public/images/lemonade.svg') {
-        let foodDelivery = {
-            source: $('.plate-food').getAttribute('src'),
-            spice:{
-                chiliSauce: +$('#chiliSauce').textContent,
-                cheddar: +$('#cheddar').textContent,
-                salt: +$('#salt').textContent,
-                sugar: +$('#sugar').textContent
-            },
-            time: +$('.time-cook').textContent
-        }
-        
-        let {messages,pointMunus} = checkFood(food,foodDelivery);
-        if (messages.length !== 0) {
-            $('.feedback-comment-list').innerHTML='';
-            messages.forEach(message =>{
-                $('.feedback-comment-list').innerHTML += `
-                    <li class="feedback-comment-item">
-                        <span>${message}</span>
-                    </li>`;
-            })  
+    if (isCooking || $('.plate-food').getAttribute('src') === './public/images/lemonade.svg'){
+        if (!inMicrowave || $('.plate-food').getAttribute('src') === './public/images/lemonade.svg') {
+            let foodDelivery = {
+                source: $('.plate-food').getAttribute('src'),
+                spice:{
+                    chiliSauce: +$('#chiliSauce').textContent,
+                    cheddar: +$('#cheddar').textContent,
+                    salt: +$('#salt').textContent,
+                    sugar: +$('#sugar').textContent
+                },
+                time: +$('.time-cook').textContent
+            }
+            
+            let {messages,pointMunus} = checkFood(food,foodDelivery);  
+            let price = 0;
+            if (messages.length !== 0 && messages.length !== -1) {
+                $('.feedback-comment-list').innerHTML='';
+                messages.forEach(message =>{
+                    $('.feedback-comment-list').innerHTML += `
+                        <li class="feedback-comment-item">
+                            <span>${message}  ${pointMunus !== -1? '-50&#36;':'-300&#36;' }</span>
+                        </li>`;
+                });  
+            }else{
+                $('.feedback-comment-list').innerHTML = `
+                        <li class="feedback-comment-item">
+                            <span>Món của bạn làm rất ngon</span>
+                        </li>`;
+            }
+            if (pointMunus === -1) {
+                price = -100;       
+            }
+            else{
+                price = 200 - pointMunus*50;
+            }
+            calback(price);
         }else{
-            $('.feedback-comment-list').innerHTML = `
-                    <li class="feedback-comment-item">
-                        <span>Món của bạn làm rất ngon</span>
-                    </li>`;
+            alert('Bạn phải tắt lò vi sóng mới giao được');
         }
-        $('.feedback-food-name').innerText = food.nameFood;
-        $('.overlay').style.display = 'block';
-        $('.feedback').style.display = 'block';
-        $('.btn-off').click();
-        clearInterval(setTime);
+       
     }else{
         alert('Bạn phải nấu ăn mới giao được');
     }
 });
 
-//set button continute
-$('.btn-continute').addEventListener('click',()=>{
-    food = foods[ramdomFood()];
-    timeCooked = 0;
-    isCooking = false;
-    swt.style.height = '100%';
+isCooking = false;
+resetQuantityFood();
+//Reset food
+function resetFood() {
     $('.btn-off').click();
+    timeCooked = 0;
     $('.time-cook').innerText = timeCooked;
     $('.oven-time').style.opacity = 0;
     $('.plate-food').setAttribute('src','');
     $('.plate-food').style.display = 'none';
+    isCooking = false;
+    resetQuantityFood();
+}
+
+function continueGame() {
+    food = foods[ramdomFood()];
+    isCooking = false;
+    swt.style.height = '100%';
+    resetFood();
     $('.feedback').style.display = 'none';
     $('.order').style.display = 'block';
-    resetQuantityFood();
+    if (totalMoney < 100) {  
+       $('#customAlert').style.display = 'block';
+       $('.overlay').style.display = 'block';
+    }else{
+        begin();
+    }
+}
+//set button continute
+$('.btn-continute').addEventListener('click',continueGame);
+
+$('#btn-confirm').addEventListener('click',()=>{
+    $('#customAlert').style.display = 'none';
+    totalMoney = 400;
+    divMoney.innerText = `${totalMoney} $`; 
     begin();
 });
-
 begin();

@@ -53,7 +53,7 @@ const foods = [
             salt:20,
             sugar:20
         },
-        time:40
+        time:40,
     },
     {
         nameFood: 'Pizza cà chua',
@@ -77,7 +77,7 @@ const foods = [
             salt:20,
             sugar:20
         },
-        time:50
+        time:40
     },
     {
         nameFood: 'Nước chanh',
