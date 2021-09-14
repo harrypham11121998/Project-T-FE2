@@ -48,12 +48,12 @@ const foods = [
         source:'./public/images/pizzaxucxic.svg',
         description: 'Chọn mua bánh pizza không, chọn mua xúc xích sau đó nêm nếm gia vị theo công thức phía dưới, cho vào lò vi sóng khoảng 10s và giao hàng cho khách',
         spice:{
-            chiliSauce: 20,
-            cheddar: 20,
-            salt:20,
-            sugar:20
+            chiliSauce: 20, //tuong ot
+            cheddar: 20, //sot pho mai
+            salt:20, //muoi
+            sugar:20 //duong
         },
-        time:40,
+        time:40, //thoi gian nau
     },
     {
         nameFood: 'Pizza cà chua',
